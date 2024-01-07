@@ -1,14 +1,17 @@
 import openai
+from openai import OpenAI
+
 import pandas as pd 
 import numpy as np 
 import os
 
-from openai.embeddings_utils import get_embedding, cosine_similarity
-from dotenv import load_dotenv
+# from openai.embeddings_utils import get_embedding, cosine_similarity #deprecated
 
-load_dotenv() # cargar las variables de entorno desde el archivo .env
-api_key = os.getenv('OPENAI_API_KEY') # obtener la clave de API del archivo .env
-openai.api_key = api_key # establecer la clave de API en la configuración de OpenAI
+# Importar la librería dotenv para cargar variables de entorno
+from dotenv import load_dotenv
+load_dotenv()
+
+client = OpenAI() # Crear una instancia del cliente de OpenAI
 
 
 # Vamos a comparar la similtud entre estas frases. Utilizaremos la métrica de similitud de coseno con embeddings de texto 
@@ -59,22 +62,20 @@ openai.api_key = api_key # establecer la clave de API en la configuración de Op
 # Para una detección de plagio más precisa hay que utilizar enfoques más sofisticados y avanzados, como técnicas de procesamiento de lenguaje natural y algoritmos de comparación más complejos, para obtener resultados más precisos.
 
 
-resp = openai.Embedding.create(
+resp = client.embeddings.create(
 		input = ["The maratton runner sprints towrds the finish line",
 		"The student study diligently for examns",
 		"The cyclist pedals furiously to complete the race",
 		"The researchers analyze data meticulously"],
-		engine = "text-embedding-ada-002")
+		model = "text-embedding-ada-002")
 
-print(type(resp["data"])) # devuelve una lista
-print(type(resp["data"][0])) # devuelve un tipo de objeto OpenAI
-print(resp["data"][0].keys()) # un diccionario (clave-valo)
-print(resp["data"][0]["embedding"]) # accedemos a embeddings (listado numérico que representa la primera frase)
+print(resp)
+# print(resp.data[0].embedding)
 
-embedding_a = resp["data"][0]["embedding"]
-embedding_b = resp["data"][1]["embedding"]
-embedding_c = resp["data"][2]["embedding"]
-embedding_d = resp["data"][3]["embedding"]
+embedding_a = resp.data[0].embedding
+embedding_b = resp.data[1].embedding
+embedding_c = resp.data[2].embedding
+embedding_d = resp.data[3].embedding
 
 # Utilizando el paquete NumPy
 
@@ -87,17 +88,17 @@ print("La similitu entre la frase A y C es: {}.".format(similaritya_c)) # hay m�
 
 # Vamos a comparar la similtud entre estas otras frases
 
-resp = openai.Embedding.create(
+resp = client.embeddings.create(
 		input = ["The chef prepares a mouthwatering dish",
 		"The sun sets behind the mountains",
 		"The pastry is so delicious",
 		"The rainbows paint the sky beautifully"],
-		engine = "text-embedding-ada-002")
+		model = "text-embedding-ada-002")
 
-embedding_a = resp["data"][0]["embedding"]
-embedding_b = resp["data"][1]["embedding"]
-embedding_c = resp["data"][2]["embedding"]
-embedding_d = resp["data"][3]["embedding"]
+embedding_a = resp.data[0].embedding
+embedding_b = resp.data[1].embedding
+embedding_c = resp.data[2].embedding
+embedding_d = resp.data[3].embedding
 
 # Utilizando el paquete NumPy
 

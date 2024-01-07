@@ -107,7 +107,7 @@ def main():
             print("Exiting the application.")
             break
 
-        message = add_messages(thread.id, user_input)
+        messages = add_messages(thread.id, user_input)
         run = run_thread(
             assistant_id=assistant.id,
             # assistant_id=assistant_id,

@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from openai import OpenAI
-
-import asyncio
 from datetime import datetime
 
 client = OpenAI() # Crear una instancia del cliente de OpenAI

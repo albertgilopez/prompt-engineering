@@ -17,6 +17,7 @@ def complete(text):
         User: Hola, como se dice hola en inglés?
         Assistant: se dice 'Hi'
         User: {text}
+        Assistant:
         """,
         max_tokens=100,
         temperature=0.5,

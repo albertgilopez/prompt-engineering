@@ -70,24 +70,24 @@ else:
     if not os.path.exists(CHROMA_DB_PATH):
         os.makedirs(CHROMA_DB_PATH)
 
-    print("\nCREANDO EMBEDDINGS...\n")
-
-    chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
-    # Create collection. get_collection, get_or_create_collection, delete_collection also available!
-    collection = chroma_client.create_collection("transcription")
-
-    for segment in segments:
-        
-        print(f"Adding segment {segment['start']} - {segment['end']}")
-        collection.add(
-            ids=str(uuid.uuid4()),
-            documents=segment["text"],
-            metadatas={"start": segment["start"],
-                    "end": segment["end"]})
-
-        collection = chroma_client.get_collection(name="transcription")
+        print("\nCREANDO EMBEDDINGS...\n")
+    
+        chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
+        # Create collection. get_collection, get_or_create_collection, delete_collection also available!
+        collection = chroma_client.create_collection("transcription")
+    
+        for segment in segments:
+            
+            print(f"Adding segment {segment['start']} - {segment['end']}")
+            collection.add(
+                ids=str(uuid.uuid4()),
+                documents=segment["text"],
+                metadatas={"start": segment["start"],
+                        "end": segment["end"]})
+    
+            collection = chroma_client.get_collection(name="transcription")
     else:
-        print("La base de datos Chroma DB no existe.")
+        print("Ya existe la base de datos Chroma DB.")
       
 print("\nCONSULTANDO EMBEDDINGS...\n")
 
@@ -115,7 +115,7 @@ if collection:
     print(SYSTEM_PROMPT)
 
 else:
-    print("No se puede realizar la consulta porque la base de datos Chroma DB no existe.")
+    print("No hay ninguna collection asociada a la base de datos Chroma DB.")
 
 print("\nCONECTANDO CON OPENAI...\n")
 

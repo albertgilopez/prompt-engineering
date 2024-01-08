@@ -31,6 +31,7 @@ def chat(message):
 
     print(completion)
     print(completion.choices[0].message)
+    print(completion.choices[0].message.content)
 
     prompt_tokens = completion.usage.prompt_tokens
     completion_tokens = completion.usage.completion_tokens

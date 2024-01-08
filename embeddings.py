@@ -11,7 +11,6 @@ load_dotenv()
 
 client = OpenAI() # Crear una instancia del cliente de OpenAI
 
-
 # Vamos a comparar la similtud entre estas frases. Utilizaremos la métrica de similitud de coseno con embeddings de texto 
 
 # La métrica de similitud de coseno con embeddings de texto se basa en la representación vectorial de las frases utilizando modelos de embeddings de texto. 

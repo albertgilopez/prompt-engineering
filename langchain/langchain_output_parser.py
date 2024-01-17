@@ -1,4 +1,4 @@
-# https://python.langchain.com/docs/modules/model_io/prompts/quick_start
+# https://python.langchain.com/docs/modules/model_io/output_parsers/quick_start
 # !pip install langchain
 
 import os 

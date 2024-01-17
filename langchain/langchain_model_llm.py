@@ -1,4 +1,5 @@
 # https://python.langchain.com/docs/get_started/introduction
+# https://python.langchain.com/docs/modules/model_io/llms/quick_start
 # !pip install langchain
 
 import os 

@@ -4,7 +4,6 @@
 import os 
 from langchain_openai import OpenAI
 
-# Importar la librería dotenv para cargar variables de entorno
 from dotenv import load_dotenv
 load_dotenv()
 

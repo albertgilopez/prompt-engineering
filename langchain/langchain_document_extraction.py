@@ -52,7 +52,6 @@ def resume_formatted_response(content):
       "hobby": [""]
     }
     """
-    
 
     responses = client.completions.create(
         model="gpt-3.5-turbo-instruct",

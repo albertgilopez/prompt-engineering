@@ -1,4 +1,5 @@
-""" Example of using the retrievers module to get relevant documents from a list of words. """
+""" Example of using the retrievers in the LangChain Community package."""
+
 
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.retrievers import KNNRetriever
